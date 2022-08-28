@@ -1,4 +1,4 @@
-﻿WMS
+WMS
 ===
 
 Test application for invoices management.
