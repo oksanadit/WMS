@@ -41,7 +41,6 @@ namespace WMS.View
             if (row == null)
                 return;
 
-            row.Deleted = true;
             Document.DocumentPosition.Remove(row);
 
             if (row.ID_Position > 0)
@@ -76,15 +75,7 @@ namespace WMS.View
                 else
                 {
 
-                    foreach (var entity in DBWMSContext.ChangeTracker.Entries())
-                    {
-                        if(entity.State == System.Data.Entity.EntityState.Added)
-                        {
-                            entity.State = System.Data.Entity.EntityState.Deleted;
-                        }
-                        entity.Reload();
-
-                    }
+                    WMSContext.RollBack();
                 }
             }
 
@@ -95,7 +86,7 @@ namespace WMS.View
         { 
             if (string.IsNullOrWhiteSpace(Document.Client) || string.IsNullOrWhiteSpace(Document.Name) || Document.DocumentPosition.Any(x=> x.Name == null))
             {
-                var dr = XtraMessageBox.Show("Complete the data (Name, Client)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var dr = XtraMessageBox.Show("Complete required fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return false;
             }

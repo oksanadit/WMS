@@ -53,13 +53,13 @@ namespace WMS.View
             this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNet = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colGross = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ItemForTotalGross = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForTotalNet = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.ItemForName = new DevExpress.XtraLayout.LayoutControlItem();
             this.ItemForClient = new DevExpress.XtraLayout.LayoutControlItem();
             this.ItemForCreated = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForTotalGross = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForTotalNet = new DevExpress.XtraLayout.LayoutControlItem();
             this.ItemForDocumentPosition = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
@@ -73,13 +73,13 @@ namespace WMS.View
             ((System.ComponentModel.ISupportInitialize)(this.TotalNetTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DocumentPositionGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForTotalGross)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForTotalNet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForClient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForCreated)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForTotalGross)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForTotalNet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForDocumentPosition)).BeginInit();
             this.SuspendLayout();
             // 
@@ -150,7 +150,7 @@ namespace WMS.View
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 838);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 763);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
             this.ribbonStatusBar.Size = new System.Drawing.Size(1211, 24);
@@ -171,7 +171,7 @@ namespace WMS.View
             this.dataLayoutControl1.Location = new System.Drawing.Point(0, 158);
             this.dataLayoutControl1.Name = "dataLayoutControl1";
             this.dataLayoutControl1.Root = this.layoutControlGroup1;
-            this.dataLayoutControl1.Size = new System.Drawing.Size(1211, 680);
+            this.dataLayoutControl1.Size = new System.Drawing.Size(1211, 605);
             this.dataLayoutControl1.TabIndex = 2;
             this.dataLayoutControl1.Text = "dataLayoutControl1";
             // 
@@ -259,7 +259,7 @@ namespace WMS.View
             this.DocumentPositionGridControl.MainView = this.gridView1;
             this.DocumentPositionGridControl.MenuManager = this.ribbon;
             this.DocumentPositionGridControl.Name = "DocumentPositionGridControl";
-            this.DocumentPositionGridControl.Size = new System.Drawing.Size(1187, 584);
+            this.DocumentPositionGridControl.Size = new System.Drawing.Size(1187, 509);
             this.DocumentPositionGridControl.TabIndex = 6;
             this.DocumentPositionGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -277,7 +277,7 @@ namespace WMS.View
             // 
             // colName
             // 
-            this.colName.Caption = "Name";
+            this.colName.Caption = "Name*";
             this.colName.FieldName = "Name";
             this.colName.Name = "colName";
             this.colName.Visible = true;
@@ -307,56 +307,6 @@ namespace WMS.View
             this.colGross.Visible = true;
             this.colGross.VisibleIndex = 3;
             // 
-            // layoutControlGroup1
-            // 
-            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControlGroup1.GroupBordersVisible = false;
-            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlGroup2});
-            this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1211, 680);
-            this.layoutControlGroup1.TextVisible = false;
-            // 
-            // layoutControlGroup2
-            // 
-            this.layoutControlGroup2.AllowDrawBackground = false;
-            this.layoutControlGroup2.GroupBordersVisible = false;
-            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.ItemForName,
-            this.ItemForClient,
-            this.ItemForCreated,
-            this.ItemForDocumentPosition});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup2.Name = "autoGeneratedGroup0";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(1191, 660);
-            // 
-            // ItemForName
-            // 
-            this.ItemForName.Control = this.NameTextEdit;
-            this.ItemForName.Location = new System.Drawing.Point(0, 0);
-            this.ItemForName.Name = "ItemForName";
-            this.ItemForName.Size = new System.Drawing.Size(1191, 24);
-            this.ItemForName.Text = "Name";
-            this.ItemForName.TextSize = new System.Drawing.Size(39, 13);
-            // 
-            // ItemForClient
-            // 
-            this.ItemForClient.Control = this.ClientTextEdit;
-            this.ItemForClient.Location = new System.Drawing.Point(0, 24);
-            this.ItemForClient.Name = "ItemForClient";
-            this.ItemForClient.Size = new System.Drawing.Size(1191, 24);
-            this.ItemForClient.Text = "Client";
-            this.ItemForClient.TextSize = new System.Drawing.Size(39, 13);
-            // 
-            // ItemForCreated
-            // 
-            this.ItemForCreated.Control = this.CreatedDateEdit;
-            this.ItemForCreated.Location = new System.Drawing.Point(0, 48);
-            this.ItemForCreated.Name = "ItemForCreated";
-            this.ItemForCreated.Size = new System.Drawing.Size(1191, 24);
-            this.ItemForCreated.Text = "Created";
-            this.ItemForCreated.TextSize = new System.Drawing.Size(39, 13);
-            // 
             // ItemForTotalGross
             // 
             this.ItemForTotalGross.Control = this.TotalGrossTextEdit;
@@ -375,12 +325,62 @@ namespace WMS.View
             this.ItemForTotalNet.Text = "Total Net";
             this.ItemForTotalNet.TextSize = new System.Drawing.Size(54, 13);
             // 
+            // layoutControlGroup1
+            // 
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlGroup2});
+            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1211, 605);
+            this.layoutControlGroup1.TextVisible = false;
+            // 
+            // layoutControlGroup2
+            // 
+            this.layoutControlGroup2.AllowDrawBackground = false;
+            this.layoutControlGroup2.GroupBordersVisible = false;
+            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.ItemForName,
+            this.ItemForClient,
+            this.ItemForCreated,
+            this.ItemForDocumentPosition});
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup2.Name = "autoGeneratedGroup0";
+            this.layoutControlGroup2.Size = new System.Drawing.Size(1191, 585);
+            // 
+            // ItemForName
+            // 
+            this.ItemForName.Control = this.NameTextEdit;
+            this.ItemForName.Location = new System.Drawing.Point(0, 0);
+            this.ItemForName.Name = "ItemForName";
+            this.ItemForName.Size = new System.Drawing.Size(1191, 24);
+            this.ItemForName.Text = "Name*";
+            this.ItemForName.TextSize = new System.Drawing.Size(39, 13);
+            // 
+            // ItemForClient
+            // 
+            this.ItemForClient.Control = this.ClientTextEdit;
+            this.ItemForClient.Location = new System.Drawing.Point(0, 24);
+            this.ItemForClient.Name = "ItemForClient";
+            this.ItemForClient.Size = new System.Drawing.Size(1191, 24);
+            this.ItemForClient.Text = "Client*";
+            this.ItemForClient.TextSize = new System.Drawing.Size(39, 13);
+            // 
+            // ItemForCreated
+            // 
+            this.ItemForCreated.Control = this.CreatedDateEdit;
+            this.ItemForCreated.Location = new System.Drawing.Point(0, 48);
+            this.ItemForCreated.Name = "ItemForCreated";
+            this.ItemForCreated.Size = new System.Drawing.Size(1191, 24);
+            this.ItemForCreated.Text = "Created";
+            this.ItemForCreated.TextSize = new System.Drawing.Size(39, 13);
+            // 
             // ItemForDocumentPosition
             // 
             this.ItemForDocumentPosition.Control = this.DocumentPositionGridControl;
             this.ItemForDocumentPosition.Location = new System.Drawing.Point(0, 72);
             this.ItemForDocumentPosition.Name = "ItemForDocumentPosition";
-            this.ItemForDocumentPosition.Size = new System.Drawing.Size(1191, 588);
+            this.ItemForDocumentPosition.Size = new System.Drawing.Size(1191, 513);
             this.ItemForDocumentPosition.StartNewLine = true;
             this.ItemForDocumentPosition.Text = "Document Position";
             this.ItemForDocumentPosition.TextSize = new System.Drawing.Size(0, 0);
@@ -390,7 +390,7 @@ namespace WMS.View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1211, 862);
+            this.ClientSize = new System.Drawing.Size(1211, 787);
             this.Controls.Add(this.dataLayoutControl1);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
@@ -412,13 +412,13 @@ namespace WMS.View
             ((System.ComponentModel.ISupportInitialize)(this.TotalNetTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DocumentPositionGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForTotalGross)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForTotalNet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForClient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForCreated)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForTotalGross)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForTotalNet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForDocumentPosition)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

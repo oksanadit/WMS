@@ -34,7 +34,7 @@ namespace WMS.View
             using(rfrmDocumentDetail view = new rfrmDocumentDetail())
             {
 
-                view.Document = DBWMSContext.Document.Where(x=>x.ID_Document == CurrentDocument.ID_Document).FirstOrDefault();
+                view.Document = CurrentDocument;
                 
                 var dr = view.ShowDialog();
 
@@ -77,7 +77,6 @@ namespace WMS.View
             var dr = XtraMessageBox.Show($"Do you want to delete invoce {CurrentDocument?.Name}? ", "Deleting invoce", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
-
                     if (CurrentDocument.DocumentPosition.Count > 0)
                     {
                         foreach (var p in CurrentDocument.DocumentPosition.ToList())

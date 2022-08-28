@@ -31,5 +31,17 @@ namespace WMS.Models
 			}
 		}
 
+		public static void RollBack()
+		{
+			foreach (var entity in Inst.ChangeTracker.Entries())
+			{
+				if (entity.State == System.Data.Entity.EntityState.Added)
+				{
+					entity.State = System.Data.Entity.EntityState.Deleted;
+				}
+				entity.Reload();
+			}
+		}
+
 	}
 }
