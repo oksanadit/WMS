@@ -10,9 +10,7 @@ SET DATEFORMAT mdy
 GO
 
 Use [WMS];
-
-SET IDENTITY_INSERT Document ON;  
-GO  
+ 
 
 CREATE TABLE Document (
     ID_Document INT PRIMARY KEY IDENTITY (1, 1) not null,
@@ -39,6 +37,8 @@ CREATE TABLE EventLog (
 	Description NVARCHAR (max),
 	ID_Document INT NOT NULL
 )
+SET IDENTITY_INSERT Document ON 
+GO 
 INSERT INTO Document
 (ID_Document, Name, Client, Created )
 VALUES
@@ -48,7 +48,8 @@ VALUES
 (4,'Invoice 4/2022', 'Client1', '2022-08-02 00:00:00.000' ),
 (5,'Invoice 5/2022', 'Client4', '2022-08-02 00:00:00.000' )
 ;
-
+SET IDENTITY_INSERT Document OFF 
+GO 
 INSERT INTO DocumentPosition
 (Name, Amount, Gross, Net, ID_Document, Created)
 VALUES
