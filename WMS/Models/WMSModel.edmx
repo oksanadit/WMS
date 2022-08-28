@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="ID_Document" />
+          </Key>
+          <Property Name="ID_Document" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Client" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Created" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DocumentPosition">
+          <Key>
+            <PropertyRef Name="ID_Position" />
+          </Key>
+          <Property Name="ID_Position" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Document" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gross" Type="float" Nullable="false" />
+          <Property Name="Net" Type="float" Nullable="false" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="Created" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EventLog">
+          <Key>
+            <PropertyRef Name="ID_EventLog" />
+          </Key>
+          <Property Name="ID_EventLog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="Type" Type="nvarchar" MaxLength="10" />
+          <Property Name="ID_Document" Type="int" />
+        </EntityType>
+        <Association Name="FK_DocumentPosition">
+          <End Role="Document" Type="Self.Document" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DocumentPosition" Type="Self.DocumentPosition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="ID_Document" />
+            </Principal>
+            <Dependent Role="DocumentPosition">
+              <PropertyRef Name="ID_Document" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WMSModelStoreContainer">
+          <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentPosition" EntityType="Self.DocumentPosition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventLog" EntityType="Self.EventLog" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DocumentPosition" Association="Self.FK_DocumentPosition">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="DocumentPosition" EntitySet="DocumentPosition" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="WMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EventLog" EntityType="WMSModel.EventLog" />
+          <EntitySet Name="DocumentPosition" EntityType="WMSModel.DocumentPosition" />
+          <EntitySet Name="Document" EntityType="WMSModel.Document" />
+          <AssociationSet Name="FK_DocumentPosition" Association="WMSModel.FK_DocumentPosition">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="DocumentPosition" EntitySet="DocumentPosition" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="EventLog">
+          <Key>
+            <PropertyRef Name="ID_EventLog" />
+          </Key>
+          <Property Name="ID_EventLog" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ID_Document" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DocumentPosition">
+          <Key>
+            <PropertyRef Name="ID_Position" />
+          </Key>
+          <Property Name="ID_Position" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Document" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gross" Type="Double" Nullable="false" />
+          <Property Name="Net" Type="Double" Nullable="false" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Document" Relationship="WMSModel.FK_DocumentPosition" FromRole="DocumentPosition" ToRole="Document" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="ID_Document" />
+          </Key>
+          <Property Name="ID_Document" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Client" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DocumentPosition" Relationship="WMSModel.FK_DocumentPosition" FromRole="Document" ToRole="DocumentPosition" />
+        </EntityType>
+        <Association Name="FK_DocumentPosition">
+          <End Type="WMSModel.Document" Role="Document" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="WMSModel.DocumentPosition" Role="DocumentPosition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="ID_Document" />
+            </Principal>
+            <Dependent Role="DocumentPosition">
+              <PropertyRef Name="ID_Document" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WMSModelStoreContainer" CdmEntityContainer="WMSEntities">
+          <EntitySetMapping Name="EventLog">
+            <EntityTypeMapping TypeName="WMSModel.EventLog">
+              <MappingFragment StoreEntitySet="EventLog">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ID_Document" ColumnName="ID_Document" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ID_EventLog" ColumnName="ID_EventLog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentPosition">
+            <EntityTypeMapping TypeName="WMSModel.DocumentPosition">
+              <MappingFragment StoreEntitySet="DocumentPosition">
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Net" ColumnName="Net" />
+                <ScalarProperty Name="Gross" ColumnName="Gross" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_Document" ColumnName="ID_Document" />
+                <ScalarProperty Name="ID_Position" ColumnName="ID_Position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Document">
+            <EntityTypeMapping TypeName="WMSModel.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_Document" ColumnName="ID_Document" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
